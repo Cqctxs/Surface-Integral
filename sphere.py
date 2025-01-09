@@ -1,12 +1,20 @@
 from manim import *
 
 
-class Torus(ThreeDScene):
+class Sphere(ThreeDScene):
     def construct(self):
         def f(s, t):
             a = 2
-            return np.array([a*np.cos(t)*np.cos(s), a*np.cos(t)*np.sin(s), a*np.sin(t)])
-        axes = ThreeDAxes(x_range=[-10, 10], y_range=[-10, 10], z_range=[-10, 10])
+            return np.array([a*np.cos(t)*np.cos(s),a*np.cos(t)*np.sin(s),a*np.sin(t)])
+
+        axes = ThreeDAxes(
+            x_range=[-10, 10],
+            y_range=[-10, 10],
+            z_range=[-10, 10],
+            x_length=10,
+            y_length=10,
+            z_length=10
+        )
         labels = axes.get_axis_labels(x_label="x", y_label="y", z_label="z")
         torus = Surface(
             lambda u, v: axes.c2p(*f(u, v)),
