@@ -1,18 +1,18 @@
 from manim import *
 
 
-class ParaSurface(ThreeDScene):
+class Torus(ThreeDScene):
     def construct(self):
         def f(s, t):
             a = 2
-            b = 6
-            return np.array([((b+a*np.cos(s))*np.cos(t)), ((b+a*np.cos(s))*np.sin(t)), a*np.sin(s)])
+            return np.array([a*np.cos(t)*np.cos(s), a*np.cos(t)*np.sin(s), a*np.sin(t)])
         axes = ThreeDAxes(x_range=[-10, 10], y_range=[-10, 10], z_range=[-10, 10])
         labels = axes.get_axis_labels(x_label="x", y_label="y", z_label="z")
         torus = Surface(
             lambda u, v: axes.c2p(*f(u, v)),
             u_range=[0, 2 * PI],
-            v_range=[0, 2 * PI],
+            v_range=[-PI/2, PI/2],
+            fill_opacity=0,
         )
 
         # zoom out so we see the axes
@@ -24,8 +24,3 @@ class ParaSurface(ThreeDScene):
         self.play(Write(torus))
         self.begin_ambient_camera_rotation(rate=0.15)
         self.wait(5)
-
-
-
-
-#torus = Surface(f, color=RED, s_range=[0, 2 * PI], t_range=[0, 2 * PI])
