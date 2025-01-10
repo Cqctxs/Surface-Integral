@@ -27,11 +27,15 @@ class Sphere(ThreeDScene):
         self.move_camera(zoom=0.5)
         self.play(Write(axes), Write(labels))
         self.wait(0.5)
-        self.move_camera(phi=75 * DEGREES, theta=30 * DEGREES, zoom=1, run_time=1.5)
+        self.move_camera(phi=75 * DEGREES, theta=30 * DEGREES, zoom=0.75, run_time=1.5)
         self.play(Write(sphere))
         self.begin_ambient_camera_rotation(rate=0.15)
         self.wait(5)
         self.stop_ambient_camera_rotation()
-        self.wait(0.5)
-        self.move_camera(phi=0 * DEGREES, theta=-90 * DEGREES, zoom=1, run_time=1.5)
+        #Top View
+        self.move_camera(phi=0 * DEGREES, theta=-90 * DEGREES, run_time=1.5)
         self.wait(5)
+        #Front View
+        self.move_camera(phi=90 * DEGREES, theta=0 * DEGREES, run_time=1.5)
+        self.wait(5)
+
