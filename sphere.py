@@ -24,20 +24,14 @@ class Sphere(ThreeDScene):
             stroke_width=0
         )
 
-        # Define the radius line
-        line = Line3D(start=axes.c2p(0, 0, 0), end=axes.c2p(a, 0, 0), color=RED)
-        label = MathTex("a").next_to(line, UP).set_color(RED_A)
-
-        self.set_camera_orientation(zoom=0.5)
+        self.move_camera(zoom=0.5)
         self.play(Write(axes), Write(labels))
         self.wait(0.5)
-        self.set_camera_orientation(phi=75 * DEGREES, theta=30 * DEGREES, zoom=1, run_time=1.5)
+        self.move_camera(phi=75 * DEGREES, theta=30 * DEGREES, zoom=1, run_time=1.5)
         self.play(Write(sphere))
         self.begin_ambient_camera_rotation(rate=0.15)
         self.wait(5)
         self.stop_ambient_camera_rotation()
         self.wait(0.5)
-        self.set_camera_orientation(phi=0 * DEGREES, theta=-90 * DEGREES, zoom=1, run_time=1.5)
-        self.play(AnimationGroup(Write(line), Write(label)))
-        self.bring_to_front(line, label)
+        self.move_camera(phi=0 * DEGREES, theta=-90 * DEGREES, zoom=1, run_time=1.5)
         self.wait(5)
