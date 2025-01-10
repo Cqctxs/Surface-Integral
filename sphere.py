@@ -15,7 +15,11 @@ class Sphere(ThreeDScene):
             y_length=10,
             z_length=10
         )
-        labels = axes.get_axis_labels(x_label="x", y_label="y", z_label="z")
+        
+        x_label = axes.get_x_axis_label("x")
+        y_label = axes.get_y_axis_label("y").shift(UP * 1.8)
+        z_label = axes.get_z_axis_label("z")
+
         sphere = Surface(
             lambda u, v: axes.c2p(*f(u, v)),
             u_range=[0, 2 * PI],
@@ -25,7 +29,7 @@ class Sphere(ThreeDScene):
         )
 
         self.move_camera(zoom=0.5)
-        self.play(Write(axes), Write(labels))
+        self.play(Write(axes), Write(x_label), Write(y_label), Write(z_label))
         self.wait(0.5)
         self.move_camera(phi=75 * DEGREES, theta=30 * DEGREES, zoom=0.75, run_time=1.5)
         self.play(Write(sphere))
