@@ -8,16 +8,16 @@ class Sphere(ThreeDScene):
             return np.array([a*np.cos(t)*np.cos(s),a*np.cos(t)*np.sin(s),a*np.sin(t)])
 
         axes = ThreeDAxes(
-            x_range=[-10, 10],
-            y_range=[-10, 10],
-            z_range=[-10, 10],
-            x_length=10,
-            y_length=10,
-            z_length=10
+            x_range=[-8, 8],
+            y_range=[-8, 8],
+            z_range=[-8, 8],
+            x_length=8,
+            y_length=8,
+            z_length=8
         )
-        
+
         x_label = axes.get_x_axis_label("x")
-        y_label = axes.get_y_axis_label("y").shift(UP * 1.8)
+        y_label = axes.get_y_axis_label("y")
         z_label = axes.get_z_axis_label("z")
 
         sphere = Surface(
@@ -42,4 +42,3 @@ class Sphere(ThreeDScene):
         #Front View
         self.move_camera(phi=90 * DEGREES, theta=0 * DEGREES, run_time=1.5)
         self.wait(5)
-
