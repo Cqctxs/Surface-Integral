@@ -24,7 +24,6 @@ class Sphere(ThreeDScene):
             lambda u, v: axes.c2p(*f(u, v)),
             u_range=[0, 2 * PI],
             v_range=[-PI/2, PI/2],
-            checkerboard_colors=[BLUE, BLUE],
             stroke_width=0
         )
 

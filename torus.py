@@ -36,6 +36,19 @@ class Torus(ThreeDScene):
         #Front View
         self.move_camera(phi=90 * DEGREES, theta=0 * DEGREES, run_time=1.5)
         self.wait(5)
+        equation = MathTex(r"\vec{r}(s,t) = ((a + b \cos t) \cos s, y = (a + b \cos t) \sin s, b \sin t").scale(0.75).to_corner(UL)
+        self.play(Write(equation))
+        self.play(FadeOut(axes), FadeOut(labels), FadeOut(torus))
+        self.wait(5)
+        partial_s = MathTex(r"\frac{\partial \vec{r}}{\partial s} = (- (a + b \cos t) \sin s, (a + b \cos t) \cos s, 0)").scale(0.75).next_to(equation, DOWN)
+        partial_t = MathTex(r"\frac{\partial \vec{r}}{\partial t} = (a \cos s - b \cos s \sin t, a \sin s - b \sin s \sin t, b \cos t)").scale(0.75).next_to(partial_s, DOWN)
+        self.play(Write(partial_s))
+        self.wait(5)
+        self.play(Write(partial_t))
+        self.wait(5)
+        cross = MathTex(r"\frac{\partial \vec{r}}{\partial s} \times \frac{\partial \vec{r}}{\partial t} = \begin{vmatrix} - (a + b \cos t) \sin s, (a + b \cos t) \cos s, 0\\a \cos s - b \cos s \sin t, a \sin s - b \sin s \sin t, b \cos t").scale(0.75).next_to(partial_t, DOWN)
+        self.play(Write(cross))
+        self.wait(5)        
 
 
 
