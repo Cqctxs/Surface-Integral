@@ -111,7 +111,6 @@ class Torus(ThreeDScene):
         int7 = MathTex(r"=2\pi[2\pi a b]").scale(0.75).next_to(int2, DOWN).align_to(dA, LEFT)
         result = MathTex(r"SA=4\pi^2 a b").scale(0.75).next_to(int5, DOWN).align_to(dA, LEFT)
         
-        
         self.play(Write(int1))
         self.wait(1)
         self.play(Write(int2))
