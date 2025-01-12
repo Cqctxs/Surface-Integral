@@ -60,6 +60,7 @@ class Sphere(Scene):
         self.play(Transform(angle_label, text))
         self.remove(angle_label)
         self.add(text)
+        self.wait(2)
         self.play(Rotating(line, radians=PI / 3, about_point=axes.c2p(0, 0)), run_time=2, rate_func=smooth)
         
         end_point = line.get_end()
@@ -72,14 +73,15 @@ class Sphere(Scene):
         self.play(Write(perpendicular_line))
         yline = Line(axes.c2p(0, 0), perpendicular_point, color=GREEN)
         self.play(Write(yline))
-        self.play(FadeOut(text, axes, circle, x_label, y_label))
-        tr = VGroup(yline, perpendicular_line,line,angle_arc)
+        self.play(FadeOut(text, axes, circle, x_label, y_label, angle_arc))
+        self.remove(angle_arc)
+
+        tr = VGroup(yline, perpendicular_line,line)
         self.wait(2)
         # Label "a" under the yline
         self.play(tr.animate.scale(3))
-        label_a = MathTex("a \cos t").next_to(tr, DOWN, buff=0.3)
-        label_b = MathTex("z = a \sin t").next_to(tr, RIGHT, buff=0.3)
-        self.remove(angle_arc)
+        label_a = MathTex("a \cos{t}").next_to(tr, DOWN, buff=0.3)
+        label_b = MathTex("z = a \sin{t}").next_to(tr, RIGHT, buff=0.3)
         self.play(Write(label_a))
         self.play(Write(label_b))
         self.wait(3)

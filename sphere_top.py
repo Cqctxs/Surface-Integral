@@ -25,7 +25,12 @@ class Sphere(Scene):
         line_label = MathTex("a").next_to(line, buff=0.7).set_color(RED)
         def get_angle():
             angle = np.arctan2(line.get_end()[1] - line.get_start()[1], line.get_end()[0] - line.get_start()[0])
-            return angle if angle >= 0 else angle + 2 * PI
+            if (angle > 0 and angle <= 360):
+                return angle
+            elif (angle < 0):
+                return angle + 2 * PI
+            else: 
+                return 0
          
         angle_arc = always_redraw(lambda: Arc(
             start_angle=0,
@@ -34,7 +39,7 @@ class Sphere(Scene):
             color=RED
         ))
         
-        angle_label = MathTex("s").next_to(line, RIGHT, buff=0.7).set_color(RED)
+        angle_label = always_redraw(lambda:MathTex("s").next_to(line, RIGHT, buff=0.1).set_color(RED))
 
         self.camera.frame_height *= 1.35
         self.camera.frame_width *= 1.35
@@ -51,8 +56,8 @@ class Sphere(Scene):
         self.bring_to_front(line, angle_arc, angle_label)
 
         # Rotate the line around the circle
-        self.play(Rotating(line, radians=-PI/4, about_point=axes.c2p(0, 0)), run_time=2, rate_func=smooth)
-        self.play(Rotating(line, radians=2 * PI, about_point=axes.c2p(0, 0)), run_time=6, rate_func=smooth)
+        self.play(Rotating(line, radians=7*PI/4, about_point=axes.c2p(0, 0)), run_time=2, rate_func=smooth)
+        #self.play(Rotating(line, radians=2 * PI, about_point=axes.c2p(0, 0)), run_time=6, rate_func=smooth)
         self.wait(1)
 
         text = MathTex(r"0 \leq s \leq 2\pi").to_corner(UL)
