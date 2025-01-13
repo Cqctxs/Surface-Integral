@@ -26,7 +26,6 @@ class Partial(ThreeDScene):
             v_range=[-PI/2, PI/2],
             stroke_width=0,
             fill_opacity=0.25,
-            resolution=8
         )
         vec0 = Arrow3D(
             start=np.array([0, 0, 0]),
